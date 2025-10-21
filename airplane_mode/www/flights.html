@@ -1,0 +1,29 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>Available Flights</h1>
+
+{% set flights = frappe.get_all(
+    "Airplane Flight",
+    fields=["name", "route", "source_airport", "destination_airport", 
+            "departure_date", "departure_time", "duration_of_flight"],
+    filters={"is_published": 1},
+    order_by="departure_date asc"
+) %}
+
+{% if flights %}
+    <ul>
+    {% for flight in flights %}
+        <li style="margin-bottom:15px;">
+            <strong>{{ flight.source_airport }} → {{ flight.destination_airport }}</strong><br>
+            Departure: {{ flight.departure_date }} {{ flight.departure_time }}<br>
+            Duration: {{ flight.duration_of_flight }}<br>
+            <a href="/{{ flight.route }}">View Flight</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No flights available.</p>
+{% endif %}
+
+{% endblock %}

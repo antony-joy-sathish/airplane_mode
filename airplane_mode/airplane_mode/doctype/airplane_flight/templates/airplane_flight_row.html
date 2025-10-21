@@ -1,0 +1,27 @@
+<div class="card shadow-sm mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ doc.airline }}</h5>
+    <p class="card-text">
+      From: {{ doc.source_airport_code }} →
+      To: {{ doc.destination_airport_code }} <br>
+
+      {# Date formatting #}
+      {% if doc.date_of_departure %}
+        {{ doc.date_of_departure.strftime("%d %B, %Y") }}
+      {% endif %} | 
+      {% if doc.time_of_departure %}
+        {{ doc.time_of_departure }}
+      {% endif %} | 
+
+      {% if doc.duration %}
+        {% set total_seconds = doc.duration | int %}
+        {% set hours = (total_seconds // 3600) %}
+        {% set minutes = (total_seconds % 3600 // 60) %}
+        Duration: {{ hours }}h {{ minutes }}m
+      {% endif %}
+    </p>
+    <a href="{{ doc.route | abs_url }}" class="btn btn-primary btn-sm" style="background-color: rgb(48, 188, 253);">
+      View Details
+    </a>
+  </div>
+</div>

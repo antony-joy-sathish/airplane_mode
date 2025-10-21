@@ -1,0 +1,34 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>{{ doc.name }}</h1>
+<h1>Flight Details</h1>
+
+<ul>
+  <li><p>Airline : {{ doc.airline }}</p></li>
+  <li><p>{{ doc.source_airport }} → {{ doc.destination_airport }}</p></li>
+  <li>
+    <p>
+      {% if doc.date_of_departure %}
+        {{ doc.date_of_departure.strftime("%d %B, %Y") }} | {{ doc.time_of_departure }}
+      {% endif %}
+    </p>
+  </li>
+  <li>
+    <p>
+      {% if doc.duration %}
+        {% set total_seconds = doc.duration | int %}
+        {% set hours = (total_seconds // 3600) %}
+        {% set minutes = (total_seconds % 3600 // 60) %}
+        Duration: {{ hours }}h {{ minutes }}m
+      {% endif %}
+    </p>
+  </li>
+</ul>
+
+<a class="btn btn-primary" 
+   href="/ticket-booking-web-form/new?flight={{ doc.name }}&flight_price={{ doc.flight_price }}" 
+   style="background-color: rgb(48, 188, 253)">
+  Book Flight
+</a>
+{% endblock %}
