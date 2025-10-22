@@ -1,0 +1,22 @@
+[
+ {
+  "date_of_birth": "2010-10-21",
+  "docstatus": 0,
+  "doctype": "Flight Passenger",
+  "first_name": "Joy",
+  "full_name": "Joy",
+  "last_name": null,
+  "modified": "2025-10-21 17:22:35.263280",
+  "name": 1
+ },
+ {
+  "date_of_birth": "2006-10-14",
+  "docstatus": 0,
+  "doctype": "Flight Passenger",
+  "first_name": "Sathish",
+  "full_name": "Sathish",
+  "last_name": null,
+  "modified": "2025-10-21 17:22:51.896292",
+  "name": 2
+ }
+]

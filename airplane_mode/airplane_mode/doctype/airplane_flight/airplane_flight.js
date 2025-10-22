@@ -4,7 +4,7 @@
 frappe.ui.form.on("Airplane Flight", {
     airplane(frm) {
         if (frm.doc.airplane) {
-           frm.set_value("route", "/flights/" + (frm.doc.airplane || "").toLowerCase());
+           frm.set_value("route", "/flights/" + (frm.doc.airplane || "").toLowerCase().replace(/\s+/g, "-"));
         }
     }
 });

@@ -1,0 +1,43 @@
+[
+ {
+  "airline": "Air India",
+  "airplane": "Air India-003",
+  "amended_from": null,
+  "crew_members": [
+   {
+    "crew_member": "1",
+    "email": "joyjoy4261@gmail.com",
+    "parent": "Air India-003-10-2025-0006",
+    "parentfield": "crew_members",
+    "parenttype": "Airplane Flight",
+    "phone": null,
+    "role": "Pilot"
+   },
+   {
+    "crew_member": "2",
+    "email": "antony@gmail.com",
+    "parent": "Air India-003-10-2025-0006",
+    "parentfield": "crew_members",
+    "parenttype": "Airplane Flight",
+    "phone": null,
+    "role": "Co-Pilot"
+   }
+  ],
+  "date_of_departure": "2025-10-22",
+  "destination_airport": "Dubai International Airport",
+  "destination_airport_code": "DXB",
+  "docstatus": 1,
+  "doctype": "Airplane Flight",
+  "duration": 11100.0,
+  "flight_price": 2999.0,
+  "gate_number": 4,
+  "is_published": 1,
+  "modified": "2025-10-21 17:25:16.076861",
+  "name": "Air India-003-10-2025-0006",
+  "route": "flights/air-india-003",
+  "source_airport": "Chhatrapati Shivaji Maharaj International Airport",
+  "source_airport_code": "BOM",
+  "status": "Scheduled",
+  "time_of_departure": "7:00:00"
+ }
+]

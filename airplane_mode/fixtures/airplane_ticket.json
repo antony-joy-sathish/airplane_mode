@@ -1,0 +1,32 @@
+[
+ {
+  "add_ons": [
+   {
+    "amount": 30.0,
+    "item": "In-flight Meal",
+    "parent": "Air India-003-10-2025-0006-BOM-to-DXB-007",
+    "parentfield": "add_ons",
+    "parenttype": "Airplane Ticket"
+   }
+  ],
+  "airline": "Air India",
+  "amended_from": null,
+  "departure_date": "2025-10-22",
+  "departure_time": "7:00:00",
+  "destination_airport_code": "DXB",
+  "docstatus": 1,
+  "doctype": "Airplane Ticket",
+  "duration_of_flight": 11100.0,
+  "enable": 0,
+  "flight": "Air India-003-10-2025-0006",
+  "flight_price": 2999.0,
+  "gate_number": "4",
+  "modified": "2025-10-21 17:28:23.149258",
+  "name": "Air India-003-10-2025-0006-BOM-to-DXB-007",
+  "passenger": "2",
+  "seat": "59D",
+  "source_airport_code": "BOM",
+  "status": "Boarded",
+  "total_amount": 3029.0
+ }
+]

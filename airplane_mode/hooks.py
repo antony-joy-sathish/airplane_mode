@@ -7,6 +7,7 @@ app_license = "mit"
 
 # Apps
 # ------------------
+fixtures = ["Airline","Airplane", "Airplane Flight","Airplane Ticket", "Airplane Ticket Add-on Type", "Airport", "Flight Passenger", "Shop", "Rent Payment", "Tenant","Shop Type","Shop Configuration"]
 
 # required_apps = []
 
@@ -150,23 +151,11 @@ doctype_js = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"airplane_mode.tasks.all"
-# 	],
-# 	"daily": [
-# 		"airplane_mode.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"airplane_mode.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"airplane_mode.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"airplane_mode.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"monthly": [
+		"airplane_mode.airplane_mode.tasks.send_rent_reminders"
+	]
+}
 
 # Testing
 # -------

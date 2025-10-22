@@ -1,0 +1,20 @@
+[
+ {
+  "active": 1,
+  "airport": "Chhatrapati Shivaji Maharaj International Airport",
+  "area_sqft": 300.0,
+  "docstatus": 0,
+  "doctype": "Shop",
+  "lease_expiry_date": "2025-10-21",
+  "lease_start_date": "2025-10-21",
+  "modified": "2025-10-21 18:28:01.472312",
+  "name": "Chhatrapati Shivaji Maharaj International Airport-105",
+  "rent_amount": 4000.0,
+  "shop_image": null,
+  "shop_name": "Coffee",
+  "shop_number": "105",
+  "shop_type": "Stall",
+  "status": "Available",
+  "tenant": "TEN-Joy"
+ }
+]

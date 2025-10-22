@@ -1,2 +1,2 @@
 Airplane Mode
-Airplane Shop Managment System
+Airport Shop Management Module

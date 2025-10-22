@@ -1,0 +1,37 @@
+[
+ {
+  "deacription": "Option to pre-book vegetarian/non-vegetarian/special meals.",
+  "docstatus": 0,
+  "doctype": "Airplane Ticket Add-on Type",
+  "modified": "2025-10-21 15:25:35.778529",
+  "name": "In-flight Meal"
+ },
+ {
+  "deacription": "Passengers can select preferred seats such as window, aisle, or extra legroom.",
+  "docstatus": 0,
+  "doctype": "Airplane Ticket Add-on Type",
+  "modified": "2025-10-21 15:25:57.133474",
+  "name": "Seat Selection"
+ },
+ {
+  "deacription": "Add a partner hotel stay to your flight booking.",
+  "docstatus": 0,
+  "doctype": "Airplane Ticket Add-on Type",
+  "modified": "2025-10-21 15:26:13.449105",
+  "name": "Hotel Booking"
+ },
+ {
+  "deacription": "Access to the airport’s premium lounge for relaxation before flight.",
+  "docstatus": 0,
+  "doctype": "Airplane Ticket Add-on Type",
+  "modified": "2025-10-21 15:26:27.633825",
+  "name": "Lounge Access"
+ },
+ {
+  "deacription": "In-flight internet access for browsing and streaming.",
+  "docstatus": 0,
+  "doctype": "Airplane Ticket Add-on Type",
+  "modified": "2025-10-21 15:26:38.261797",
+  "name": "Wi-Fi Access"
+ }
+]

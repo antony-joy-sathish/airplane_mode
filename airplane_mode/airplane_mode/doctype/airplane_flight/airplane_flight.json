@@ -15,6 +15,7 @@
   "status",
   "airline",
   "is_published",
+  "gate_number",
   "airport_details_section",
   "source_airport",
   "source_airport_code",
@@ -152,6 +153,11 @@
    "fieldtype": "Table",
    "label": "Crew Members",
    "options": "Crew Members"
+  },
+  {
+   "fieldname": "gate_number",
+   "fieldtype": "Int",
+   "label": "Gate Number"
   }
  ],
  "grid_page_length": 50,
@@ -164,7 +170,7 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2025-09-11 15:04:00.432333",
+ "modified": "2025-10-21 14:23:23.969398",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",

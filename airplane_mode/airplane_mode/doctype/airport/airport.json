@@ -8,7 +8,10 @@
  "field_order": [
   "code",
   "city",
-  "country"
+  "column_break_chme",
+  "country",
+  "total_shops",
+  "available_shops"
  ],
  "fields": [
   {
@@ -31,12 +34,38 @@
    "in_list_view": 1,
    "label": "Country",
    "reqd": 1
+  },
+  {
+   "fieldname": "total_shops",
+   "fieldtype": "Int",
+   "label": "Total Shops"
+  },
+  {
+   "fieldname": "available_shops",
+   "fieldtype": "Int",
+   "label": "Available Shops"
+  },
+  {
+   "fieldname": "column_break_chme",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-09-09 11:53:35.669786",
+ "links": [
+  {
+   "group": "Linked Flights",
+   "link_doctype": "Airplane Flight",
+   "link_fieldname": "source_airport",
+   "table_fieldname": "Out"
+  },
+  {
+   "group": "Linked Shopes",
+   "link_doctype": "Shop",
+   "link_fieldname": "airport"
+  }
+ ],
+ "modified": "2025-10-21 17:56:35.917530",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airport",

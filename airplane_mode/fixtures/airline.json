@@ -1,0 +1,42 @@
+[
+ {
+  "customer_care_number": "1860 233 1407",
+  "docstatus": 0,
+  "doctype": "Airline",
+  "founding_year": 1932,
+  "headquarters": "New Delhi, India",
+  "modified": "2025-10-21 14:46:14.319417",
+  "name": "Air India",
+  "website": "https://www.airindia.com"
+ },
+ {
+  "customer_care_number": "0124 6173838",
+  "docstatus": 0,
+  "doctype": "Airline",
+  "founding_year": 2006,
+  "headquarters": "Gurugram, Haryana, India ",
+  "modified": "2025-10-21 14:53:03.016475",
+  "name": "IndiGo Airlines",
+  "website": "https://www.goindigo.in"
+ },
+ {
+  "customer_care_number": "971 600 555555",
+  "docstatus": 0,
+  "doctype": "Airline",
+  "founding_year": 1985,
+  "headquarters": "Dubai, United Arab Emirates",
+  "modified": "2025-10-21 14:53:50.121342",
+  "name": "Emirates",
+  "website": null
+ },
+ {
+  "customer_care_number": "974 4023 0000",
+  "docstatus": 0,
+  "doctype": "Airline",
+  "founding_year": 1993,
+  "headquarters": "Doha, Qatar",
+  "modified": "2025-10-21 14:54:43.566215",
+  "name": "Qatar Airways",
+  "website": "https://www.qatarairways.com"
+ }
+]

@@ -1,0 +1,46 @@
+[
+ {
+  "available_shops": 15,
+  "city": "New Delhi",
+  "code": "DEL",
+  "country": "India",
+  "docstatus": 0,
+  "doctype": "Airport",
+  "modified": "2025-10-21 15:14:43.915973",
+  "name": "Indira Gandhi International Airport",
+  "total_shops": 120
+ },
+ {
+  "available_shops": 25,
+  "city": "Dubai",
+  "code": "DXB",
+  "country": "United Arab Emirates",
+  "docstatus": 0,
+  "doctype": "Airport",
+  "modified": "2025-10-21 15:16:02.604889",
+  "name": "Dubai International Airport",
+  "total_shops": 180
+ },
+ {
+  "available_shops": 30,
+  "city": "Singapore",
+  "code": "SIN",
+  "country": "total_shops",
+  "docstatus": 0,
+  "doctype": "Airport",
+  "modified": "2025-10-21 15:16:42.200847",
+  "name": "Singapore Changi Airport",
+  "total_shops": 200
+ },
+ {
+  "available_shops": 10,
+  "city": "Mumbai",
+  "code": "BOM",
+  "country": "India",
+  "docstatus": 0,
+  "doctype": "Airport",
+  "modified": "2025-10-21 15:15:18.394178",
+  "name": "Chhatrapati Shivaji Maharaj International Airport",
+  "total_shops": 95
+ }
+]

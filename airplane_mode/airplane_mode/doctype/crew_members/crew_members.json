@@ -7,33 +7,49 @@
  "engine": "InnoDB",
  "field_order": [
   "crew_member",
+  "email",
+  "column_break_alyh",
   "role",
-  "notes"
+  "phone"
  ],
  "fields": [
   {
    "fieldname": "crew_member",
    "fieldtype": "Link",
    "label": "Crew Member",
-   "options": "Flight Passenger"
+   "options": "Flight Passenger",
+   "reqd": 1
   },
   {
    "fieldname": "role",
    "fieldtype": "Select",
    "label": "Role ",
-   "options": "Pilot\nCo-Pilot\nAttendant"
+   "options": "Pilot\nCo-Pilot\nAttendant",
+   "reqd": 1
   },
   {
-   "fieldname": "notes",
-   "fieldtype": "Small Text",
-   "label": "Notes"
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_alyh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-09-09 15:12:12.897439",
+ "modified": "2025-10-21 17:23:43.312179",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Crew Members",

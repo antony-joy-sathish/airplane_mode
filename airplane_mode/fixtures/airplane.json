@@ -1,0 +1,47 @@
+[
+ {
+  "airline": "Air India",
+  "capacity": 180,
+  "docstatus": 0,
+  "doctype": "Airplane",
+  "model": "Airbus A320",
+  "modified": "2025-10-21 15:18:32.810211",
+  "name": "Air India-001"
+ },
+ {
+  "airline": "Emirates",
+  "capacity": 178,
+  "docstatus": 0,
+  "doctype": "Airplane",
+  "model": "Boeing 737 MAX 8",
+  "modified": "2025-10-21 15:18:51.582406",
+  "name": "Emirates-002"
+ },
+ {
+  "airline": "Air India",
+  "capacity": 350,
+  "docstatus": 0,
+  "doctype": "Airplane",
+  "model": "Airbus A350-900",
+  "modified": "2025-10-21 15:19:10.138053",
+  "name": "Air India-003"
+ },
+ {
+  "airline": "Emirates",
+  "capacity": 146,
+  "docstatus": 0,
+  "doctype": "Airplane",
+  "model": "Embraer E195-E2",
+  "modified": "2025-10-21 15:19:35.746856",
+  "name": "Emirates-004"
+ },
+ {
+  "airline": "Qatar Airways",
+  "capacity": 296,
+  "docstatus": 0,
+  "doctype": "Airplane",
+  "model": "Boeing 787 Dreamliner",
+  "modified": "2025-10-21 15:20:03.605421",
+  "name": "Qatar Airways-005"
+ }
+]

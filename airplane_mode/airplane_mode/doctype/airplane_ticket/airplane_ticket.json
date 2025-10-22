@@ -9,11 +9,11 @@
   "passenger",
   "status",
   "airline",
-  "gate_number",
   "column_break_wmij",
   "flight",
   "seat",
   "enable",
+  "gate_number",
   "section_break_qhqv",
   "source_airport_code",
   "column_break_mklz",
@@ -125,6 +125,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "fetch_from": "flight.flight_price",
    "fieldname": "flight_price",
    "fieldtype": "Currency",
    "label": "Flight Price",
@@ -163,6 +164,7 @@
    "reqd": 1
   },
   {
+   "fetch_from": "flight.gate_number",
    "fieldname": "gate_number",
    "fieldtype": "Data",
    "label": "Gate Number"
@@ -178,7 +180,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-09-12 10:31:54.297858",
+ "modified": "2025-10-21 17:27:26.445126",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",
