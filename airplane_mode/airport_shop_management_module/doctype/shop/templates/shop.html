@@ -1,0 +1,332 @@
+{% extends "templates/web.html" %}
+{% block title %}{{ shop_name }} - Shop Details{% endblock %}
+
+{% block page_content %}
+
+<div class="shop-detail-container">
+
+  <!-- Hero Section with Image -->
+  <div class="shop-hero" style="background-image: url('{{ shop_image or 'https://images.pexels.com/photos/1438445/pexels-photo-1438445.jpeg' }}');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="shop-title">{{ shop_name }}</h1>
+      <p class="shop-subtitle">{{ shop_number }} &middot; {{ airport }}</p>
+      <div class="status-badge {{ 'available' if status == 'Available' else 'occupied' }}">
+        {{ status }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container content-wrapper">
+
+    <!-- Quick Actions -->
+    <div class="action-bar">
+      <a href="/lead-form?shop={{ name }}" class="btn-interest">
+        Express Interest
+      </a>
+    </div>
+
+    <!-- Details Grid -->
+    <div class="details-grid">
+
+      <!-- Key Specs -->
+      <div class="spec-card">
+        <div class="spec-icon">Area</div>
+        <div class="spec-value">{{ area_sqft or '—' }} <small>sqft</small></div>
+        <div class="spec-label">Total Area</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">Rent</div>
+        <div class="spec-value">{{ frappe.utils.fmt_money(rent_amount) or '—' }}</div>
+        <div class="spec-label">Per Month</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">Type</div>
+        <div class="spec-value">{{ shop_type or '—' }}</div>
+        <div class="spec-label">Shop Type</div>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">Tenant</div>
+        <div class="spec-value">{{ tenant or 'Vacant' }}</div>
+        <div class="spec-label">Current Tenant</div>
+      </div>
+
+    </div>
+
+    <!-- Full Details Table -->
+    <div class="details-table">
+      <h2>Complete Information</h2>
+      <table>
+        <tr><th>Shop Number</th><td>{{ shop_number }}</td></tr>
+        <tr><th>Airport</th><td>{{ airport }}</td></tr>
+        <tr><th>Shop Type</th><td>{{ shop_type }}</td></tr>
+        <tr><th>Area</th><td>{{ area_sqft }} sqft</td></tr>
+        <tr><th>Rent</th><td>{{ frappe.utils.fmt_money(rent_amount) }}</td></tr>
+        <tr><th>Tenant</th><td>{{ tenant or '—' }}</td></tr>
+        <tr><th>Lease Start</th><td>{{ lease_start_date or '—' }}</td></tr>
+        <tr><th>Lease Expiry</th><td>{{ lease_expiry_date or '—' }}</td></tr>
+        <tr><th>Status</th><td><span class="status-badge {{ 'available' if status == 'Available' else 'occupied' }}">{{ status }}</span></td></tr>
+        <tr><th>Active</th><td>{{ 'Yes' if active else 'No' }}</td></tr>
+      </table>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+      <h3>Ready to Rent This Shop?</h3>
+      <p>Submit your interest and our team will contact you within 24 hours.</p>
+      <a href="/lead-form?shop={{ name }}" class="btn-cta-large">
+        Submit Interest Now
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Internal CSS -->
+<style>
+  :root {
+    --primary: #0074d9;
+    --success: #2ecc40;
+    --danger: #ff4136;
+    --gray: #f4f4f4;
+    --dark: #111;
+    --light: #fff;
+  }
+
+  .shop-detail-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .shop-hero {
+    position: relative;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 1rem 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .shop-title {
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .shop-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+  }
+
+  /* Status Badge */
+  .status-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .status-badge.available {
+    background: var(--success);
+    color: white;
+  }
+  .status-badge.occupied {
+    background: var(--danger);
+    color: white;
+  }
+
+  /* Content Wrapper */
+  .content-wrapper {
+    margin-top: -4rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* Action Bar */
+  .action-bar {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .btn-interest, .btn-print {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    margin: 0 0.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 1rem;
+  }
+  .btn-interest {
+    background: var(--primary);
+    color: white;
+  }
+  .btn-interest:hover {
+    background: #0063b8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,116,217,0.3);
+  }
+  .btn-print {
+    background: transparent;
+    color: var(--dark);
+    border: 2px solid #ddd;
+  }
+  .btn-print:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  /* Spec Cards */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .spec-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+  }
+  .spec-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .spec-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .spec-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .spec-value small {
+    font-size: 1rem;
+    color: #666;
+  }
+  .spec-label {
+    color: #777;
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Details Table */
+  .details-table {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 3rem;
+  }
+  .details-table h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    font-size: 1.6rem;
+  }
+  .details-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .details-table th {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #444;
+    width: 35%;
+  }
+  .details-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  .details-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), #0063b8);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,116,217,0.2);
+  }
+  .cta-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cta-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  .btn-cta-large {
+    display: inline-block;
+    background: white;
+    color: var(--primary);
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-cta-large:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .shop-hero { height: 300px; }
+    .shop-title { font-size: 2rem; }
+    .details-grid { grid-template-columns: 1fr 1fr; }
+    .action-bar { flex-direction: column; }
+    .btn-interest, .btn-print { margin: 0.5rem 0; width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .details-grid { grid-template-columns: 1fr; }
+    .details-table th, .details-table td { display: block; width: 100%; }
+    .details-table th { background: transparent; padding-bottom: 0; }
+  }
+</style>
+
+{% endblock %}
+
+<!-- this is a sample default web page template -->

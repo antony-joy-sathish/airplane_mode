@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Shop</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🛍️ Create New Shop</h2>
+        <form id="shopForm">
+
+            <label>Shop Name *</label>
+            <input type="text" id="shop_name" required>
+
+            <label>Shop Image (URL)</label>
+            <input type="text" id="shop_image" placeholder="https://...">
+
+            <label>Airport *</label>
+            <input type="text" id="airport" required>
+
+            <label>Rent Amount (₹)</label>
+            <input type="number" id="rent_amount">
+
+            <label>Lease Start Date</label>
+            <input type="date" id="lease_start_date">
+
+            <label>Area (sqft)</label>
+            <input type="number" id="area_sqft">
+
+            <label>
+                <input type="checkbox" id="active"> Active
+            </label>
+
+            <label>Shop Number *</label>
+            <input type="text" id="shop_number" required>
+
+            <label>Shop Type</label>
+            <select id="shop_type">
+                <option value="Stall">Stall</option>
+                <option value="Walk-through">Walk-through</option>
+                <option value="Normal">Normal</option>
+            </select>
+
+            <label>Tenant *</label>
+            <input type="text" id="tenant" required>
+
+            <label>Lease Expiry Date</label>
+            <input type="date" id="lease_expiry_date">
+
+            <label>Status</label>
+            <select id="status">
+                <option value="Available">Available</option>
+                <option value="Occupied">Occupied</option>
+            </select>
+
+            <label>
+                <input type="checkbox" id="is_published"> Is Published
+            </label>
+
+            <button type="submit">Create Shop</button>
+        </form>
+
+        <div class="message" id="responseMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById('shopForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formatDate = (dateStr) => dateStr || "";
+
+            const shopData = {
+                shop_name: document.getElementById('shop_name').value,
+                shop_image: document.getElementById('shop_image').value,
+                airport: document.getElementById('airport').value,
+                rent_amount: parseFloat(document.getElementById('rent_amount').value) || 0,
+                lease_start_date: formatDate(document.getElementById('lease_start_date').value),
+                lease_expiry_date: formatDate(document.getElementById('lease_expiry_date').value),
+                area_sqft: parseFloat(document.getElementById('area_sqft').value) || 0,
+                shop_number: document.getElementById('shop_number').value,
+                shop_type: document.getElementById('shop_type').value,
+                tenant: document.getElementById('tenant').value,
+                status: document.getElementById('status').value,
+                active: document.getElementById('active').checked ? 1 : 0,
+                is_published: document.getElementById('is_published').checked ? 1 : 0
+            };
+
+            const msg = document.getElementById('responseMessage');
+            msg.textContent = "⏳ Creating shop...";
+            msg.className = "message";
+
+            try {
+                const res = await fetch("http://localhost:5000/api/v2/document/Shop", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "token 983b800cb14d2c0:ea8a01b1d33c20b"
+                    },
+                    body: JSON.stringify(shopData)
+                });
+
+                const result = await res.json();
+                console.log(result);
+
+                if (res.ok) {
+                    msg.className = "message success";
+                    msg.textContent = "✅ Shop created successfully!";
+                    e.target.reset();
+                } else {
+                    msg.className = "message error";
+                    msg.textContent = "❌ Error: " + (result.message || "Bad Request");
+                }
+            } catch (error) {
+                console.error(error);
+                msg.className = "message error";
+                msg.textContent = "❌ Network Error!";
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,13 +1,16 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{shop}-{tenant}-{month}",
  "creation": "2025-10-21 14:34:09.934357",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "shop",
   "payment_date",
+  "cost",
   "amount_paid",
+  "remaining",
   "column_break_cgps",
   "tenant",
   "month",
@@ -44,7 +47,8 @@
   {
    "fieldname": "amount_paid",
    "fieldtype": "Currency",
-   "label": "Amount Paid"
+   "label": "Amount Paid",
+   "non_negative": 1
   },
   {
    "fieldname": "receipt_no",
@@ -56,20 +60,39 @@
    "fieldtype": "Select",
    "label": "Payment Status",
    "options": "\nPaid\nPending",
-   "placeholder": "Select Status"
+   "placeholder": "Select Status",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_cgps",
    "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "shop.rent_amount",
+   "fieldname": "cost",
+   "fieldtype": "Currency",
+   "label": "Cost",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "remaining",
+   "fieldtype": "Currency",
+   "label": "Remaining",
+   "non_negative": 1,
+   "precision": "1",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-21 17:48:48.614169",
+ "modified": "2025-10-22 19:50:51.920585",
  "modified_by": "Administrator",
  "module": "Airport Shop Management Module",
  "name": "Rent Payment",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
