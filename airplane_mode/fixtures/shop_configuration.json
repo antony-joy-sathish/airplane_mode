@@ -1,10 +1,10 @@
 [
  {
-  "default_rent": 0.0,
+  "default_rent": 5000.0,
   "docstatus": 0,
   "doctype": "Shop Configuration",
-  "enable_reminder": 0,
-  "modified": null,
+  "enable_reminder": 1,
+  "modified": "2025-10-22 11:54:41.160941",
   "name": "Shop Configuration"
  }
 ]

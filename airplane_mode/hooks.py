@@ -7,7 +7,7 @@ app_license = "mit"
 
 # Apps
 # ------------------
-fixtures = ["Airline","Airplane", "Airplane Flight","Airplane Ticket", "Airplane Ticket Add-on Type", "Airport", "Flight Passenger", "Shop", "Rent Payment", "Tenant","Shop Type","Shop Configuration"]
+fixtures = ["Airline","Airplane", "Airplane Flight","Airplane Ticket", "Airplane Ticket Add-on Type", "Airport", "Flight Passenger", "Shop", "Rent Payment", "Tenant","Shop Type","Shop Configuration", "Shop Lead"]
 
 # required_apps = []
 

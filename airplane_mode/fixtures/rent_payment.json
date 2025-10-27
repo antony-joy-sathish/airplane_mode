@@ -1,1 +1,17 @@
-[]
+[
+ {
+  "amount_paid": 2000.0,
+  "cost": 4000.0,
+  "docstatus": 0,
+  "doctype": "Rent Payment",
+  "modified": "2025-10-22 19:47:23.806830",
+  "month": "February",
+  "name": "2k64vtvtmi",
+  "payment_date": "2025-10-22",
+  "payment_status": "Pending",
+  "receipt_no": "654",
+  "remaining": 2000.0,
+  "shop": "Chhatrapati Shivaji Maharaj International Airport-105",
+  "tenant": "TEN-Joy"
+ }
+]
