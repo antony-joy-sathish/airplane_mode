@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop Management</title>
+  <link rel="stylesheet" href="/assets/airplane_mode/public/custome.css" />
+  <style>
+    /* Optional: Custom brand color */
+    :root {
+      --primary: #0074d9;
+    }
+    .status-active { color: #2ecc40; font-weight: bold; }
+    .status-inactive { color: #ff4136; font-weight: bold; }
+    .rent { font-weight: bold; color: #111; }
+    .shop-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: .2em .2em 0 0;
+    }
+    .card { cursor: pointer; }
+    .loading, .error-msg { text-align: center; padding: 2em; font-size: 1.2em; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="brand">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMmg3LjVsLTMuNzUgMy43NUwxOS41IDEyIDEyIDE5LjVsLTcuNS03LjVMMTIgMnpNMTIgMTVsMy41IDMuNUwxOS41IDE1aC01eiIvPjwvc3ZnPg==" alt="Shop Icon" class="logo">
+      Shop Manager
+    </a>
+    <input type="checkbox" id="nav-toggle" class="show" hidden>
+    <label for="nav-toggle" class="burger">Menu</label>
+    <div class="menu">
+      <a href="#" class="button">Dashboard</a>
+      <a href="#" class="button pseudo">Settings</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main style="padding: 4em .6em 1em;">
+    <h1>Shops Overview</h1>
+    <p class="loading">Loading shops...</p>
+
+    <!-- Shops Grid -->
+    <div id="shops-container" class="flex three four-800 five-1200" style="margin-top: 1em;"></div>
+
+    <!-- Error Message -->
+    <p id="error-msg" class="error-msg" style="display: none;"></p>
+  </main>
+
+  <!-- Modal for Shop Details -->
+  <input type="checkbox" id="shop-modal" hidden class="modal">
+  <div class="modal">
+    <div class="overlay" onclick="document.getElementById('shop-modal').checked = false;"></div>
+    <div class="card" style="max-width: 500px; width: 90%;">
+      <header id="modal-header">
+        <h3 id="modal-shop-name"></h3>
+        <label for="shop-modal" class="close">×</label>
+      </header>
+      <section id="modal-content" style="padding: .8em;">
+        <img id="modal-image" src="" alt="Shop" style="width:100%; border-radius:.2em; margin-bottom:.6em;">
+        <p><strong>Shop Number:</strong> <span id="modal-shop-number"></span></p>
+        <p><strong>Airport:</strong> <span id="modal-airport"></span></p>
+        <p><strong>Status:</strong> <span id="modal-status"></span></p>
+        <p><strong>Rent Amount:</strong> <span id="modal-rent" class="rent"></span></p>
+        <p><strong>Route:</strong> <code id="modal-route"></code></p>
+      </section>
+      <footer>
+        <button class="button success" onclick="alert('Edit feature coming soon!')">Edit</button>
+        <label for="shop-modal" class="button pseudo">Close</label>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = '/api/v2/document/Shop?fields=["name","shop_name","shop_number","airport","status","route","shop_image"]';
+
+    async function loadShops() {
+      const container = document.getElementById('shops-container');
+      const loading = document.querySelector('.loading');
+      const errorMsg = document.getElementById('error-msg');
+
+      try {
+        const response = await fetch(API_URL, {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+        const shops = Array.isArray(data) ? data : (data.data || []);
+
+        if (shops.length === 0) {
+          container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">No shops found.</p>';
+          return;
+        }
+
+        container.innerHTML = shops.map(shop => {
+          const imageUrl = shop.shop_image 
+            ? `data:image/jpeg;base64,${shop.shop_image}` 
+            : 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMmg3LjVsLTMuNzUgMy43NUwxOS41IDEyIDEyIDE5LjVsLTcuNS03LjVMMTIgMnpNMTIgMTVsMy41IDMuNUwxOS41IDE1aC01eiIvPjwvc3ZnPg==';
+
+          const statusClass = shop.status?.toLowerCase() === 'active' ? 'status-active' : 'status-inactive';
+          const statusText = shop.status ? shop.status : 'Unknown';
+
+          return `
+            <div class="card" onclick="openModal(${JSON.stringify(shop).split('"').join('&quot;')})">
+              <img src="${imageUrl}" alt="${shop.shop_name || 'Shop'}" class="shop-image">
+              <section style="padding:.6em .8em;">
+                <h4 style="margin:0 0 .3em;">${shop.shop_name || 'Unnamed Shop'}</h4>
+                <p style="margin:0;"><strong>#${shop.shop_number || '—'}</strong></p>
+                <p style="margin:.3em 0;"><span class="icon-location"></span> ${shop.airport || '—'}</p>
+                <p style="margin:0;"><strong class="${statusClass}">${statusText}</strong></p>
+                <p class="rent">$${shop.rent_amount || '0'}</p>
+              </section>
+            </div>
+          `;
+        }).join('');
+
+      } catch (err) {
+        console.error('Fetch error:', err);
+        errorMsg.textContent = 'Failed to load shops. Please try again later.';
+        errorMsg.style.display = 'block';
+      } finally {
+        loading.style.display = 'none';
+      }
+    }
+
+    function openModal(shop) {
+      document.getElementById('modal-shop-name').textContent = shop.shop_name || 'Unnamed Shop';
+      document.getElementById('modal-shop-number').textContent = shop.shop_number || '—';
+      document.getElementById('modal-airport').textContent = shop.airport || '—';
+      
+      const statusEl = document.getElementById('modal-status');
+      statusEl.textContent = shop.status || 'Unknown';
+      statusEl.className = shop.status?.toLowerCase() === 'active' ? 'status-active' : 'status-inactive';
+
+      document.getElementById('modal-rent').textContent = `$${shop.rent_amount || '0'}`;
+      document.getElementById('modal-route').textContent = shop.route || '—';
+
+      const img = document.getElementById('modal-image');
+      img.src = shop.shop_image 
+        ? `data:image/jpeg;base64,${shop.shop_image}` 
+        : 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMmg3LjVsLTMuNzUgMy43NUwxOS41IDEyIDEyIDE5LjVsLTcuNS03LjVMMTIgMnpNMTIgMTVsMy41IDMuNUwxOS41IDE1aC01eiIvPjwvc3ZnPg==';
+
+      document.getElementById('shop-modal').checked = true;
+    }
+
+    // Load on start
+    document.addEventListener('DOMContentLoaded', loadShops);
+  </script>
+</body>
+</html>

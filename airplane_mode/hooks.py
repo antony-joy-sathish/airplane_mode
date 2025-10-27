@@ -153,7 +153,7 @@ doctype_js = {
 
 scheduler_events = {
 	"monthly": [
-		"airplane_mode.airplane_mode.tasks.send_rent_reminders"
+		"airplane_mode.tasks.send_rent_reminders"
 	]
 }
 
